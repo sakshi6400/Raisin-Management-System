@@ -1,0 +1,16 @@
+CREATE TABLE IF NOT EXISTS employees (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(100) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS daily_work (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  employee_id INT NOT NULL,
+  date DATE NOT NULL,
+  kgs_cleaned DECIMAL(10,2) NOT NULL,
+  earnings DECIMAL(10,2) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (employee_id) REFERENCES employees(id),
+  UNIQUE KEY unique_employee_date (employee_id, date)
+); 
